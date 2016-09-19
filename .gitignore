@@ -1,0 +1,9 @@
+# Virtual enviroments
+env/
+# Databases files
+db.sqlite3
+# PyCharm Stuff
+.idea/
+# Python bytecode files
+*.pyc
+

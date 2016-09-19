@@ -1,0 +1,23 @@
+    {% extends 'base.html' %}}
+
+    {% block header %}
+        {% include 'blog/header_nofilter.html' %}
+    {% endblock %}
+
+    {% block jumbotron %}
+        {% include 'blog/jumbotron.html' %}
+    {% endblock %}
+    <div id="{{ page_number }}" class="container">
+        <div class="row">
+            {% block posts %}
+                <div  class="titPrinc">
+                    <h2>Blogs</h2>
+                </div>
+                {% include 'users/blogInd.html' %}
+            {% endblock %}
+
+        </div><!--/row-->
+
+    </div><!--/.col-xs-12.col-sm-9-->
+    <hr>
+

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}}
+
+
+    {% block header %}
+        {% include 'blog/header.html' %}
+    {% endblock %}
+
+    {% block jumbotron %}
+        {% include 'blog/jumbotron.html' %}
+    {% endblock %}
+
+    {% block posts %}
+        <div id="{{ page_number }}" class="container homeview">
+            <div class="row">
+                <div  class="titPrinc">
+                    <h2>ÚLTIMOS POSTS</h2>
+                </div>
+                {% include 'blog/post.html' %}
+            </div><!--/row-->
+        </div>
+    {% endblock %}
+
+    <hr>
+

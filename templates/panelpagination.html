@@ -1,0 +1,32 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-lg-12">
+
+            <div class="pagination">
+                 <ul>
+                     <li class="disabled">
+                         {% if paginator.has_prev %}
+                            <a class="paginacion" href="?page={{ paginator.firstPage }}"><i class="fa fa-fast-backward" aria-hidden="true"></i></a>
+                            <a class="paginacion" href="?page={{ paginator.prev_page }}"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                          {% else %}
+                            <a class="paginacion_gray"><i class="fa fa-fast-backward" aria-hidden="true"></i></a>
+                            <a class="paginacion_gray"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                          {% endif %}
+                          {% if paginator.has_next %}
+                            <a class="paginacion" href="?page={{ paginator.next_page }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                            <a class="paginacion" href="?page={{ paginator.pages }}"><i class="fa fa-fast-forward" aria-hidden="true"></i></a>
+                          {% else %}
+                            <a class="paginacion_gray"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                            <a class="paginacion_gray"><i class="fa fa-fast-forward" aria-hidden="true"></i></a>
+                          {% endif %}
+                     </li>
+                     <p>Página <{{paginator.page}} de {{paginator.pages}}> </p>
+                 </ul>
+            </div>
+
+<!--                <div class="panel-body pagination light-theme simple-pagination"></div>-->
+            </div>
+        </div>
+    </div>
+

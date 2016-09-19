@@ -1,0 +1,14 @@
+{% block filter %}
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            {% if category_list|length > 0 %}
+                {%  for category in category_list %}
+                    <li><a href="{% url 'home_filtered' cathegory=category %}">{{ category.category_name }}</a></li>
+                {% endfor %}
+            {% else %}
+                <li><a href="#">[vacío]</a></li>
+            {% endif %}
+        </ul>
+    </li>
+{% endblock %}

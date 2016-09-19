@@ -1,0 +1,54 @@
+
+<header class="header">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-up navbar-brand web-title" href="#id-section-init">Spartan Life</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {% block filter %}
+                        {% include 'blog/filter_userpost.html' %}
+                    {% endblock %}
+                </ul>
+
+                <form class="navbar-form">
+                    {% block find %}
+
+                    {% endblock %}
+
+                    <div class="form-group">
+                        <a type="button" class="btn btn-info" href="{% url 'blog_list' %}">Blogs</a>
+                        {% if user.is_authenticated %}
+                            <a type="button" class="btn btn-info" href="{% url 'new_post' %}">Escribir Post</a>
+                        {% endif %}
+                    </div>
+                    <div class="homologinbutton">
+                        {% if user.is_authenticated %}
+                            <div>
+                                <p class="navbar-text">Bienvenido <span class="username">{{ user.username }}</span></p>
+                                <a href="logout/" type="button" class="btn btn-warning">Logout</a>
+                                <a href="password/reset" type="button" class="btn btn-warning">Cambiar password</a>
+                            </div>
+                        {% else %}
+                            <a href="login/" type="button" class="btn btn-warning">Login</a>
+                            <a href="signup" type="button" class="btn btn-warning">Regístrate</a>
+                        {% endif %}
+
+                    </div>
+                </form>
+
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>

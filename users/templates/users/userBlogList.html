@@ -1,0 +1,26 @@
+    {% extends 'base.html' %}}
+
+    {% block header %}
+        {% include 'blog/headerPostFiltering.html' %}
+    {% endblock %}
+
+    {% block jumbotron %}
+        {% include 'blog/jumbotron.html' %}
+    {% endblock %}
+    <div id="{{ page_number }}" class="container">
+        <div class="row">
+            {% block posts %}
+                <div  class="titPrinc">
+                    <h2>Posts de {{ user_info.get }}</h2>
+                    {% if cathegory_posts|length %}
+                        <h3>Categoría {{ cathegory_posts }}</h3>
+                    {% endif %}
+                </div>
+                {% include 'users/postsInd.html' %}
+            {% endblock %}
+
+        </div><!--/row-->
+
+    </div><!--/.col-xs-12.col-sm-9-->
+    <hr>
+

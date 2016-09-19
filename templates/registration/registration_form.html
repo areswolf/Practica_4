@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block jumbotron %}
+    {% include 'blog/jumbotron.html' %}
+{% endblock %}
+
+{% block content %}
+<form class="panel panel-primary panel-form" method="post" action=".">
+  {% csrf_token %}
+  {{ form|crispy }}
+
+  <input class="btn btn-primary" type="submit" value="{% trans 'Enviar' %}" />
+  <a class="btn btn-warning" href="{% url 'home' %}">{% trans 'Atrás' %}</a>
+
+</form>
+{% endblock %}

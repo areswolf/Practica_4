@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block jumbotron %}
+    {% include 'blog/jumbotron.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="well well-sm">
+<p>{% trans "Tu cuenta está ahora activa" %}</p>
+</div>
+
+{% endblock %}

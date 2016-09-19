@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+ {% block jumbotron %}
+        {% include 'blog/jumbotron.html' %}
+    {% endblock %}
+
+{% block content %}
+<div class="col-sm-6 col-sm-offset-3">
+  <h1>{% trans 'Registrate' %}!</h1>
+<form method="post" action=".">
+  {% csrf_token %} 
+  {{ form|crispy }}
+
+  <input class="btn btn-primary buttonLogIn botonsubmit" type="submit" value="{% trans 'Log in' %}" />
+  <input class="btn btn-primary buttonLogIn botonsubmit" type="hidden" name="next" value="{{ next }}" />
+</form>
+  </div>
+
+<div>
+  <p> ¿Olvidaste la contraseña"? <a href="{% url 'auth_password_reset' %}">{% trans "Recordar" %}</a>!</p>
+  <p> ¿No miembro? <a href="{% url 'registration_register' %}">{% trans "Regístrate" %}</a>!</p>
+
+</div>
+{% endblock %}

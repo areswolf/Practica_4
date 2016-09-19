@@ -1,0 +1,70 @@
+{% extends 'base.html' %}}
+
+    {% block header %}
+        {% include 'blog/header_nofilter.html' %}
+    {% endblock %}
+
+    {% block jumbotron %}
+        {% include 'blog/jumbotron.html' %}
+    {% endblock %}
+    {% block posts %}
+
+    <div class="container bloque">
+        <div class="row">
+                {% if post_list|length > 0 %}
+                    {% for postElement in post_list %}
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <h2>
+                                    {{ postElement.title }}
+                                </h2>
+                                <p>
+                                    {{ postElement.introduction }}
+                                </p>
+                                <div class="blogdetailphoto">
+                                    <img  src="{{ postElement.media_url }}">
+                                </div>
+                                <div class="container">
+                                    <div class="table table-responsive">
+                                        <h5 class="text-left"><span class="author-title">Autor: </span><span class="author-description">{{ postElement.owner.username }}</span>
+                                        |
+                                        <span class="author-title">Categorías: </span><span class="author-description">
+                                            {% for category in postElement.blog_category.all %}
+                                                - {{ category.category_name }} -
+                                            {% endfor %}
+                                        </span></h5>
+                                        <!-- Esto hay que cambiarlo -->
+                                        <img class="author-img user-img" src="/static/images/Javier_1.jpg">
+                                        <!---------------------------->
+                                        <a type="button" class="btn btn-default btn-sm user-buttons" href="./detail.html#comentarios">
+                                            <span><i class="fa fa-commenting-o fa-align-right fa-align-justify" aria-hidden="true"></i> Chats </span> <span class="likes"> 6</span>
+                                        </a>
+                                        <button type="button" class="btnstar btn btn-default btn-sm botonlike user-buttons">
+                                            <span id="idlike1" class="starstyle">&#9733</span> Like <span id="idlike1-1" class="likes">1</span>
+                                        </button>
+                                        <h5 class="text-left"><span class="author-title">Publicado el: </span><span class="timedate-description">{{ postElement.created_at }}</span></h5>
+                                        <p class = "post_body">
+                                            {{ postElement.post_body }}
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div><!--/.col-xs-6.col-lg-4-->
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3>¡Únete a nosotros y sé el primero en escribir un POST!</h3>
+                {% endif %}
+
+
+        </div><!--/row-->
+
+    </div><!--/.col-xs-12.col-sm-9-->
+{% endblock %}
+    <hr>
+
+
+
+
+
+

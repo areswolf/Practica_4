@@ -1,0 +1,54 @@
+
+{% if blog_list|length > 0 %}
+    {% for postElement in blog_list %}
+        {% if postElement.title|length == 0 %}
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 bloque">
+                    <h2>
+                        {{ postElement.profile.blog_title }}
+                    </h2>
+                    <h4>
+                        {{ postElement.username }}
+                    </h4>
+                    <div >
+                        <h5 class="text-left"><span class="author-title">Autor: </span><span class="author-description">{{ postElement.first_name }} {{ postElement.last_name }}</span>
+                        |
+                        <span class="author-title">Email: </span><span class="author-description">
+                                {{ postElement.email }}
+                        </span></h5>
+                        <img class="author-img user-img" src="{{ user.profile.photo_url }}">
+
+                        <a class="btn btn-primary btnbuscar btnbloglist" type="button" href="{% url 'user_blog_list' username=postElement.username %}">
+                            Posts <span class="badge">{{ postElement.profile.num_of_posts }}</span>
+                        </a>
+                        <span class="label label-warning btnbuscar lblbloglist">
+                            Likes <span class="badge likeslabel">{{ postElement.profile.num_of_likes }}</span>
+                        </span>
+                    </div>
+                </div>
+
+            {% else %}
+                {% if postElement.title|length > 0 %}
+                <div class="thumbnail">
+                    <h5>Ultimo POST:</h5>
+                    <div class="caption">
+                            <h3>{{ postElement.title }}</h3>
+                            <p>{{ postElement.introduction }}</p>
+                            <img class="thumbnailimg" src="{{ postElement.media_url }}" alt="{{ postElement.media_url }}">
+                    </div>
+                </div>
+                {% endif %}
+            </div><!--/.col-xs-6.col-lg-4-->
+        </div>
+        {% endif %}
+
+    {% endfor %}
+    {% include 'panelpagination.html' %}
+{% else %}
+    <h3>¡Únete a nosotros y sé el primero en escribir un POST!</h3>
+{% endif %}
+
+
+
+

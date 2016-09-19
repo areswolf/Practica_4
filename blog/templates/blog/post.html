@@ -1,0 +1,45 @@
+
+    {% if post_list|length > 0 %}
+    {% for postElement in post_list %}
+    <!--<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">-->
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                <h3>{{ postElement.title }}</h3>
+                <p>
+                    {{ postElement.introduction }}
+                </p>
+            </div>
+            <img class="container homephotos" src="{{ postElement.media_url }}">
+
+            <h5 class="text-left"><span class="author-title">Autor: </span><span class="author-description">{{ postElement.owner.username }}</span>
+
+            <span class="author-title">Categorías: </span><span class="author-description">
+                {% for category in postElement.blog_category.all %}
+                    -{{ category.category_name }}
+                {% endfor %}
+            </span></h5>
+
+            <div class="container curpohomeitem">
+                <img class="author-img user-img" src="{{ postElement.owner.profile.photo_url }}">
+
+                <a type="button" class="btn btn-default btn-sm user-buttons" href="./detail.html#comentarios">
+                    <span><i class="fa fa-commenting-o fa-align-right fa-align-justify" aria-hidden="true"></i> Chats </span> <span class="likes"> 6</span>
+                </a>
+                <button type="button" class="btnstar btn btn-default btn-sm botonlike user-buttons">
+                    <span id="idlike1" class="starstyle">&#9733</span> Like <span id="idlike1-1" class="likes">1</span>
+                </button>
+                <a class="btn btn-info btn-sm" href="{% url 'user_post_detail' username=postElement.owner pk=postElement.pk %}" role="button">Ver mas... &raquo;</a>
+                <h5 class="text-left"><span class="author-title">Publicado: </span><span class="timedate-description">{{ postElement.created_at }}</span></h5>
+            </div>
+        </div>
+    </div><!--/.col-xs-6.col-lg-4-->
+    {% endfor %}
+    {% include 'panelpagination.html' %}
+    {% else %}
+        <h3>¡Únete a nosotros y sé el primero en escribir un POST!</h3>
+    {% endif %}
+
+
+
+

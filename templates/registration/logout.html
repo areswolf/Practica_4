@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block jumbotron %}
+    {% include 'blog/jumbotron.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="well well-sm ">
+    <h3>{% trans "Logged out" %}</h3>
+
+</div>
+{% endblock %}

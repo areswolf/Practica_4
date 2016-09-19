@@ -1,0 +1,39 @@
+{% extends 'base.html' %}}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block jumbotron %}
+    {% include 'blog/jumbotron.html' %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div  class="titPrinc">
+            <h2>Log in</h2>
+        </div>
+        <form class="sect-form panel panel-primary panel-form" method="post">
+            {{ form|crispy }}
+            {% csrf_token %}
+
+            <input class="inputsubmit" type="text" id="username" name="username" placeholder="Nombre de usuario">
+            <input class="inputsubmit" type="password" id="pwd" name="pwd" placeholder="Password">
+            <div class="cssformlogin">
+                <div class="">
+                    <a href='/'>Recuperar contraseña</a>
+                </div>
+                <div class="">
+                    <a href='/'>Cambiar contraseña</a>
+                </div>
+                <div class="">
+                    <a href='/signup'>Registrarse</a>
+                </div>
+                <div class="">
+                    <a href='/'>Volver</a>
+                </div>
+            </div>
+            <div class="botonsubmit">
+                <button class="btn btn-primary" type="submit">Enviar</button>
+                {{ error }}
+            </div>
+        </form>
+    </div>
+{% endblock %}

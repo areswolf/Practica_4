@@ -1,0 +1,42 @@
+
+{% if post_list|length > 0 %}
+    {% for postElement in post_list %}
+        <div class="container">
+            <div class="row thumbnail">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 bloque">
+
+                    <img class="thumbnailimg imgpost" src="{{ postElement.media_url }}" alt="{{ postElement.media_url }}">
+
+                    <h2 class="caption">
+                        {{ postElement.title }}
+                    </h2>
+                    <h4>
+                        {{ postElement.introduction }}
+
+                    </h4>
+                    <div>
+                        <span class="label label-warning lbllikespost">
+                            Likes <span class="badge likeslabel">{{ postElement.post_likes }}</span>
+                        </span>
+                        <a class="btn btn-info btn-sm btnbloglist" href="{% url 'user_post_detail' username=postElement.owner pk=postElement.pk  %}" role="button">Ver mas... &raquo;</a>
+                    </div>
+                    <div class="table table-responsive lblultlect">
+                        <span>
+                            Última lectura: <span class="badge likeslabel">{{ postElement.modified_at }}</span>
+                        </span>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% include 'panelpagination.html' %}
+{% else %}
+    <h3>Este usuario no tiene ningún Post!</h3>
+{% endif %}
+
+
+
+
