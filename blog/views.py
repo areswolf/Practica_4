@@ -11,28 +11,29 @@ from blog.forms import PostForm
 from blog.models import BlogPost, Category
 
 
-def home(request):
-    """
-    Renderiza el home con los últimos posts publicados y el listado de categorias
-    :param request: objeto HttpRequest con los datos de la petición
-    :return: HttpResponse con los datos de la respuesta
-    """
-    blog_post = BlogPost.objects.all().order_by("-created_at")
-    categoryList = Category.objects.all()
-    user_list = User.objects.all().select_related('owner')
+class Home(View):
+    def get(self,request):
+        """
+        Renderiza el home con los últimos posts publicados y el listado de categorias
+        :param request: objeto HttpRequest con los datos de la petición
+        :return: HttpResponse con los datos de la respuesta
+        """
+        blog_post = BlogPost.objects.all().order_by("-created_at")
+        categoryList = Category.objects.all()
+        user_list = User.objects.all().select_related('owner')
 
-    # Inicio el paginador
-    pag = Paginador( request, blog_post, 9, 'blogs')
+        # Inicio el paginador
+        pag = Paginador( request, blog_post, 9, 'blogs')
 
-    context = {
-        'category_list': categoryList,
-        'post_list': pag['blogs'],
-        'totPost': blog_post,
-        'paginator': pag,
-        'user_list': user_list
-    }
+        context = {
+            'category_list': categoryList,
+            'post_list': pag['blogs'],
+            'totPost': blog_post,
+            'paginator': pag,
+            'user_list': user_list
+        }
 
-    return render(request, 'blog/home.html', context)
+        return render(request, 'blog/home.html', context)
 
 
 class homeFiltered(View):

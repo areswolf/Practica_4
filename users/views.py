@@ -45,7 +45,6 @@ class user_blog_list_filtered(View):
     def get(self, request, username, cathegory):
         categoryList = Category.objects.all()
         if cathegory == 'General':
-            #direct = "{% url 'user_blog_list' username='" + username +"' %}"
             direct = "/blogs/" + username
             return redirect( direct )
         category = Category.objects.all().filter(category_name=cathegory)

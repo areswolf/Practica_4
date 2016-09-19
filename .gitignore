@@ -7,3 +7,8 @@ db.sqlite3
 # Python bytecode files
 *.pyc
 
+/static/css/localstyles.css
+/static/images/andalusia-1x.jpg
+/static/images/andalusia-2x.jpg
+/static/images/andalusia-3x.jpg
+/static/images/Javier_1.jpg

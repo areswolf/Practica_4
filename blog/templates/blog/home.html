@@ -2,11 +2,11 @@
 
 
     {% block header %}
-        {% include 'blog/header.html' %}
+        {% include 'blog/include/header.html' %}
     {% endblock %}
 
     {% block jumbotron %}
-        {% include 'blog/jumbotron.html' %}
+        {% include 'blog/include/jumbotron.html' %}
     {% endblock %}
 
     {% block posts %}
@@ -15,7 +15,7 @@
                 <div  class="titPrinc">
                     <h2>ÚLTIMOS POSTS</h2>
                 </div>
-                {% include 'blog/post.html' %}
+                {% include 'blog/include/post.html' %}
             </div><!--/row-->
         </div>
     {% endblock %}
