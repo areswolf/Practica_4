@@ -15,12 +15,18 @@ Including another URLconf
 """
 
 from django.conf.urls import url
+
+from users.api import UserSignUp
 from users.views import blog_list, user_blog_list, user_blog_list_filtered
 
 
 urlpatterns = [
+    #web
     url(r'^blogs/$', blog_list.as_view(), name='blog_list'),
     url(r'^blogs/(?P<username>\w+)$', user_blog_list.as_view(), name='user_blog_list'),
     url(r'^blogs/(?P<username>\w+)/categoria/(?P<cathegory>\w+)/$', user_blog_list_filtered.as_view(), name='user_post_detail_filtered'),
+    #API
+    url(r'^api/1.0/users/$', UserSignUp.as_view(), name='user_sign_up_api'),
+
 
 ]

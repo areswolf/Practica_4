@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'sptBlogging',
     'registration',
+    'rest_framework',
 ]
 
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -153,4 +154,3 @@ LOGIN_URL = '/accounts/login/'
 
 LOGIN_REDIRECT_URL = '/'
 
-#{{ site.domain }}
