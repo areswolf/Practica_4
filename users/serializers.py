@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
+from users.models import Profile
+
+
+class BlogListSerializer(serializers.Serializer):
+    user = serializers.CharField()
+    blog_title = serializers.CharField()
+
+
 
 class UserSerializer (serializers.Serializer):
     id = serializers.ReadOnlyField()

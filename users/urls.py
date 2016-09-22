@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from users.api import UserSignUpAPI, UserDetailAPI
+from users.api import UserSignUpAPI, UserDetailAPI, BlogListAPI
 from users.views import blog_list, user_blog_list, user_blog_list_filtered
 
 
@@ -27,6 +27,8 @@ urlpatterns = [
     #API
     url(r'^api/1.0/users/$', UserSignUpAPI.as_view(), name='user_sign_up_api'),
     url(r'^api/1.0/users/(?P<pk>[0-9]+)$', UserDetailAPI.as_view(), name='user_detail_api'),
+    url(r'^api/1.0/blogs/$', BlogListAPI.as_view(), name='user_bloglist_api'),
+    #url(r'^api/1.0/blogs/(?P<cathegory>\w+)/$', BlogListAPI.as_view(), name='user_bloglist_api'),
 
 
 

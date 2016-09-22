@@ -7,9 +7,9 @@ from rest_framework.views import APIView
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_200_OK, HTTP_202_ACCEPTED, \
     HTTP_204_NO_CONTENT
 
+from users.models import Profile
 from users.permissions import UserPermission
-from users.serializers import UserSerializer
-
+from users.serializers import UserSerializer, BlogListSerializer
 
 
 class UserSignUpAPI(APIView):
@@ -52,3 +52,17 @@ class UserDetailAPI (APIView):
         self.check_object_permissions(request, user)
         user.delete()
         return Response(status=HTTP_204_NO_CONTENT)
+
+
+class BlogListAPI (APIView):
+    """
+    Endpoint para obtener la lista de BLOGS a partir del username
+    """
+    def get(self, request):
+        blogs = Profile.objects.all()
+        serializer = BlogListSerializer(blogs, many=True)
+
+        return Response(serializer.data)
+
+
+
