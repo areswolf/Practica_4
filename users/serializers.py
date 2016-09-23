@@ -8,9 +8,14 @@ from users.models import Profile
 
 
 class BlogListSerializer(serializers.Serializer):
-    user = serializers.CharField()
     blog_title = serializers.CharField()
+    blog_url = serializers.SerializerMethodField()
 
+    class Meta:
+        model = Profile
+
+    def get_blog_url(self, obj):
+        return "127.0.0.1:8000/blogs/" + str(obj.user)
 
 
 class UserSerializer (serializers.Serializer):
