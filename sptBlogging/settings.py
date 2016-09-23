@@ -154,3 +154,7 @@ LOGIN_URL = '/accounts/login/'
 
 LOGIN_REDIRECT_URL = '/'
 
+BASE_URL = '127.0.0.1:8000'
+
+BLOGS_URL = BASE_URL + '/blogs/'
+

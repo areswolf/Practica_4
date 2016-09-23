@@ -1,9 +1,12 @@
 # coding=utf-8
+from django.conf.urls import url
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
+from blog import urls
+from sptBlogging.settings import BLOGS_URL
 from users.models import Profile
 
 
@@ -15,7 +18,8 @@ class BlogListSerializer(serializers.Serializer):
         model = Profile
 
     def get_blog_url(self, obj):
-        return "127.0.0.1:8000/blogs/" + str(obj.user)
+        url = BLOGS_URL
+        return url + str(obj.user)
 
 
 class UserSerializer (serializers.Serializer):

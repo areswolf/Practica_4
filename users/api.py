@@ -65,4 +65,16 @@ class BlogListAPI (APIView):
         return Response(serializer.data)
 
 
+class BlogListSearchAPI (APIView):
+    """
+    Endpoint para obtener la lista de BLOGS a partir del username
+    """
+    def get(self, request, username):
+        blogs = Profile.objects.all().filter(user__username=username)
+        if len(blogs)>0:
+            serializer = BlogListSerializer(blogs, many=True)
+            return Response(serializer.data)
+        else:
+            return Response(status=HTTP_204_NO_CONTENT)
+
 
