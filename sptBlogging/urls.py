@@ -16,10 +16,18 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework.routers import DefaultRouter
+
+from files.views import FileViewSet
 from users.forms import ExRegistrationForm
 from registration.backends.default.views import RegistrationView
 from blog import urls as blogs_urls
 from users import urls as users_urls
+
+
+router = DefaultRouter()
+router.register('api/1.0/files', FileViewSet)
+
 
 urlpatterns = [
     # Admin
@@ -33,4 +41,10 @@ urlpatterns = [
 
     # users (Blogs)
     url(r'', include(users_urls)),
+
+    #Files
+    url(r'', include(router.urls)),
+
+
+
 ]

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'sptBlogging',
     'registration',
     'rest_framework',
+    'files',
 ]
 
 ACCOUNT_ACTIVATION_DAYS = 7

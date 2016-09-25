@@ -27,6 +27,7 @@
                     <div class="homologinbutton">
                         {% if user.is_authenticated %}
                             <div>
+                                <a href="{% url 'devlog'%}"><h3 class="navbar-text">-DEV LOG-</h3></a>
                                 <p class="navbar-text">Bienvenido <span class="username">{{ user.username }}</span></p>
                                 <a href="logout/" type="button" class="btn btn-warning">Logout</a>
                                 <a href="password/reset" type="button" class="btn btn-warning">Cambiar password</a>

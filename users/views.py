@@ -6,6 +6,11 @@ from django.shortcuts import render, redirect
 from blog.models import BlogPost, Category
 
 
+class devlog(View):
+    def get(self,request):
+        return render(request, 'users/devlog.html', {})
+
+
 class user_blog_list(View):
 
     def get(self, request, username):

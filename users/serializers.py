@@ -13,6 +13,7 @@ from users.models import Profile
 class BlogListSerializer(serializers.Serializer):
     blog_title = serializers.CharField()
     blog_url = serializers.SerializerMethodField()
+    num_of_blogs = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
@@ -20,6 +21,11 @@ class BlogListSerializer(serializers.Serializer):
     def get_blog_url(self, obj):
         url = BLOGS_URL
         return url + str(obj.user)
+
+
+    def get_num_of_blogs(self, obj):
+        nob = User.objects.all().filter(profile__blog_title__isnull=False).count()
+        return str(nob)
 
 
 class UserSerializer (serializers.Serializer):
