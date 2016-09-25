@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^blogs/(?P<username>\w+)/(?P<pk>[0-9]+)$', user_post_detail.as_view(), name='user_post_detail'),
     url(r'^newpost/$', newPost.as_view(), name='new_post'),
     #API
+    url(r'^api/1.0/posts/(?P<pk>[0-9]+)$', PostDetailAPI.as_view(), name='blogs_postdetail_api'),
     url(r'^api/1.0/posts/$', PostListAPI.as_view(), name='blogs_postlist_api'),
     url(r'^api/1.0/posts/(?P<title_content>\w+)$', PostListSearchAPI.as_view(), name='blogs_postlistsearch_api'),
-    url(r'^api/1.0/posts/(?P<pk>[0-9]+)$', PostDetailAPI.as_view(), name='blogs_postdetail_api'),
+
 ]

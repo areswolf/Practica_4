@@ -50,10 +50,10 @@ class PostQuerySet(object):
 class PostSearchQuerySet(object):
 
     def get_posts_by_user_and_more(self, request, title_content):
-        possible_posts = BlogPost.objects.all().select_related("owner").order_by("-modified_at").filter(title__contains=title_content)
+        possible_posts = BlogPost.objects.all().select_related("owner").order_by("-modified_at", "title").filter(title__contains=title_content)
         if len(possible_posts)==0:
             possible_posts = BlogPost.objects.all().select_related("owner").order_by("-modified_at").filter(post_body__contains=title_content)
-            
+
         if not request.user.is_authenticated():
             possible_posts = possible_posts.filter(visibility=VISIBILITY_PUBLIC, status=STATUS_PUBLICATED)
         elif not request.user.is_superuser:
