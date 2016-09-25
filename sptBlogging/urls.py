@@ -27,8 +27,10 @@ urlpatterns = [
     # Registration
     url(r'^', include('registration.backends.default.urls')),
     url(r'signup$', RegistrationView.as_view(form_class = ExRegistrationForm), name = 'registration_register'),
+
     # Blogs (posts)
     url(r'', include(blogs_urls)),
+
     # users (Blogs)
     url(r'', include(users_urls)),
 ]
