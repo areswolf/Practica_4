@@ -158,3 +158,7 @@ BASE_URL = '127.0.0.1:8000'
 
 BLOGS_URL = BASE_URL + '/blogs/'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
+}

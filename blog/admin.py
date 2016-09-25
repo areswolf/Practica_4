@@ -1,9 +1,10 @@
 from django.contrib import admin
+
 from blog.models import BlogPost, Category
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'introduction', 'created_at', 'blog_category', 'post_likes', )
+    list_display = ('title', 'introduction', 'created_at', 'blog_category', 'post_likes',)
     list_filter = ('blog_category', 'owner',)
     search_fields = ('title', 'blog_category',)
 
@@ -27,3 +28,12 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(BlogPost)
 admin.site.register(Category)
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
@@ -8,7 +9,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 
 from blog.forms import PostForm
-from blog.models import BlogPost, Category
+from blog.models import BlogPost, Category, VISIBILITY_PUBLIC, STATUS_PUBLICATED
 
 
 class Home(View):
@@ -34,6 +35,30 @@ class Home(View):
         }
 
         return render(request, 'blog/home.html', context)
+
+class PostQuerySet(object):
+    @staticmethod
+    def get_posts_by_user(user):
+        possible_posts = BlogPost.objects.all().select_related("owner").order_by("-modified_at")
+        if not user.is_authenticated():
+            possible_posts = possible_posts.filter(visibility=VISIBILITY_PUBLIC, status=STATUS_PUBLICATED)
+        elif not user.is_superuser:
+            possible_posts = possible_posts.filter(Q(owner=user))
+        return possible_posts
+
+
+class PostSearchQuerySet(object):
+
+    def get_posts_by_user_and_more(self, request, title_content):
+        possible_posts = BlogPost.objects.all().select_related("owner").order_by("-modified_at").filter(title__contains=title_content)
+        if len(possible_posts)==0:
+            possible_posts = BlogPost.objects.all().select_related("owner").order_by("-modified_at").filter(post_body__contains=title_content)
+            
+        if not request.user.is_authenticated():
+            possible_posts = possible_posts.filter(visibility=VISIBILITY_PUBLIC, status=STATUS_PUBLICATED)
+        elif not request.user.is_superuser:
+            possible_posts = possible_posts.filter(Q(owner=request.user))
+        return possible_posts
 
 
 class homeFiltered(View):

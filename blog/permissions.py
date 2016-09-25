@@ -1,3 +1,5 @@
+# coding=utf-8
+
 # -*- coding: utf-8 -*-
 from rest_framework.permissions import BasePermission
 
@@ -11,13 +13,13 @@ class UserPermission(BasePermission):
         :param view:
         :return:
         """
-        from users.api import UserDetailAPI
+        from blog.api import PostDetailAPI
 
         if request.method == "POST":
             return True
         if request.user.is_superuser:
             return True
-        if isinstance(view, UserDetailAPI):
+        if isinstance(view, PostDetailAPI):
             return True
         return False
 
