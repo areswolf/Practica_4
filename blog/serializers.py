@@ -16,7 +16,7 @@ class PostListSerializer(PostSerializer):
     author = serializers.SerializerMethodField()
 
     class Meta(PostSerializer.Meta):
-        fields = ("title", "author", "media_url", "introduction", "modified_at")
+        fields = ("id", "title", "author", "media_url", "introduction", "modified_at")
 
 
     def get_author(self, obj):

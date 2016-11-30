@@ -6,12 +6,12 @@ from django.shortcuts import render, redirect
 from blog.models import BlogPost, Category
 
 
-class devlog(View):
+class DevLog(View):
     def get(self,request):
         return render(request, 'users/devlog.html', {})
 
 
-class user_blog_list(View):
+class UserBlogList(View):
 
     def get(self, request, username):
         pk = User.objects.all().filter(username=username)
@@ -46,7 +46,7 @@ class user_blog_list(View):
         return render(request, 'users/userBlogList.html', context)
 
 
-class user_blog_list_filtered(View):
+class UserBlogListFiltered(View):
     def get(self, request, username, cathegory):
         categoryList = Category.objects.all()
         if cathegory == 'General':
@@ -83,7 +83,7 @@ class user_blog_list_filtered(View):
 
 
 
-class blog_list(View):
+class BlogList(View):
     """
     Renderiza el home con los últimos posts publicados y el listado de categorias
     :param request: objeto HttpRequest con los datos de la petición
@@ -93,13 +93,14 @@ class blog_list(View):
         blogs = User.objects.all()
         blogUser = []
 
-        for i in range (0, blogs.count()):
+        #for i in range (0, blogs.count()):
+        for blog in blogs:
             try:
-                blogrest = BlogPost.objects.all().filter (owner=blogs[i].pk)[0]
+                blogrest = BlogPost.objects.all().filter(owner=blog.pk)[0]
             except:
                 pass
             if blogrest is not None:
-                blogUser.append(blogs[i])   # user
+                blogUser.append(blog)   # user
                 blogUser.append(blogrest)   # Último post
 
 

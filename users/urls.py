@@ -16,20 +16,20 @@ Including another URLconf
 
 from django.conf.urls import url
 from users.api import UserSignUpAPI, UserDetailAPI, BlogListAPI, BlogListSearchAPI
-from users.views import blog_list, user_blog_list, user_blog_list_filtered, devlog
+from users.views import BlogList, UserBlogList, UserBlogListFiltered, DevLog
 
 urlpatterns = [
     #web
-    url(r'^blogs/$', blog_list.as_view(), name='blog_list'),
-    url(r'^blogs/(?P<username>\w+)$', user_blog_list.as_view(), name='user_blog_list'),
-    url(r'^blogs/(?P<username>\w+)/categoria/(?P<cathegory>\w+)/$', user_blog_list_filtered.as_view(), name='user_post_detail_filtered'),
+    url(r'^blogs/$', BlogList.as_view(), name='blog_list'),
+    url(r'^blogs/(?P<username>\w+)$', UserBlogList.as_view(), name='user_blog_list'),
+    url(r'^blogs/(?P<username>\w+)/categoria/(?P<cathegory>\w+)/$', UserBlogListFiltered.as_view(), name='user_post_detail_filtered'),
     #API
     url(r'^api/1.0/users/$', UserSignUpAPI.as_view(), name='user_sign_up_api'),
     url(r'^api/1.0/users/(?P<pk>[0-9]+)$', UserDetailAPI.as_view(), name='user_detail_api'),
     url(r'^api/1.0/blogs/$', BlogListAPI.as_view(), name='user_bloglist_api'),
     url(r'^api/1.0/blogs/(?P<username>\w+)/$', BlogListSearchAPI.as_view(), name='user_bloglistsearch_api'),
     #devlog
-    url(r'^devlog/$', devlog.as_view(), name='devlog'),
+    url(r'^devlog/$', DevLog.as_view(), name='devlog'),
 
 
 
